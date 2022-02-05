@@ -16,10 +16,10 @@
 
     {{ __('You are logged in!') }}
 
-</div>
-</div>
-</div>
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div> --}}
 
 
@@ -30,8 +30,8 @@
             <th>Blogs</th>
             <th>Created_at</th>
             <th>Updated_at</th>
-            <th>Action</th>
             <th>Status</th>
+            <th>Action</th>
         </tr>
         <tr>
             @foreach($posts as $post)
@@ -42,6 +42,14 @@
                 <td>{{$post->updated_at }}</td>
                 <td>{{$post->status }}</td>
                 <td>
+                    @if($post->status == 'pending')
+                    <form action="{{route('home.approve', ['id' =>  $post->id])}}" method="GET">
+                        @csrf
+                        @method('GET')
+                        
+                        <input type="submit" class="btn btn-success" style="margin-top:10px;" value="Approve"/>
+                    </form>
+                    @endif
                     @if(auth()->user()->hasRole('admin'))
                         <form action="{{ route('home.destroy',$post->id) }}" method="POST">
                             @csrf
@@ -50,19 +58,7 @@
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
 
-                            @if($post->status == 'pending')
-                            <form action="{{route('home.approve', ['id' =>  $post->id])}}" method="GET">
-                                @csrf
-                                @method('GET')
-                                
-                                <input type="submit" class="btn btn-success" style="margin-top:10px;" value="Approve"/>
-                                
-                                
-                            </form>
-                        
-                            @endif
-                            @endif
-                            
+                        @endif
                 </td>
         @endforeach
         </tr>
@@ -85,9 +81,7 @@
                 <button type="submit" class="btn btn-primary">Send</button>
 
             </div>
-
         </div>
-        
     </form>
     @endif
     {{$posts->links('pagination::bootstrap-4')}}
