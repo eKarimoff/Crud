@@ -34,8 +34,8 @@
                 <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button></td>
                 </form>
                 @endforeach
-</tr>
-</tbody>
+            </tr>
+        </tbody>
     </table>
      {{$companies-links('pagination::bootstrap-4')}}
 @endsection

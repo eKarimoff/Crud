@@ -34,7 +34,7 @@ Route::get('/', function () {
 });
 
 Route::resource('/home', HomeController::class);
-Route::get('/home/approve/{id}', [
+Route::post('/home/approve/{id}', [
     'as' => 'home.approve',
     'uses' => 'HomeController@approve'
 ]);
