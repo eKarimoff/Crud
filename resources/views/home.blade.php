@@ -1,43 +1,47 @@
 @extends('layouts.app')
 @section('content')
-
+{{-- 
 {{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Dashboard') }}</div> 
 
-<div class="card-body">
+{{-- <div class="card-body">
     @if(session('status'))
         <div class="alert alert-success" role="alert">
             {{ session('status') }}
         </div>
     @endif
 
-    {{ __('You are logged in!') }}
+    {{ __('Hello Admin!') }}
 
 </div>
+
+{{-- </div>
 </div>
 </div>
-</div>
-</div> --}}
+</div>  --}}
 
 
-<div class="container" style="margin-top:30px ">
-    <thead>
-    <tr>
-        <table class="table table-bordered table-hover">
-            <th>#</th>
+
+
+<div class="container " style="margin-top:30px; ">
+    <div class="table-responsive">
+
+    
+    <table class="table table-bordered" >
+        
+        <tr>
+        <th>#</th>
         <th>Blogs</th>
         <th>Created_at</th>
         <th>Updated_at</th>
         <th>Status</th>
         @if(auth()->user()->hasRole('admin'))
         <th>Action</th>
-    </tr>
-         </thead>
-                @endif
-            <tbody>
+        @endif
+        </tr>
                 @foreach($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
@@ -47,26 +51,28 @@
                     <td>{{ $post->status }}</td>
                     @if(auth()->user()->hasRole('admin'))
                    
-                        <td class="btn-group">
-                            <form action="{{ route('home.destroy',$post->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="btn btn-info">Reject</button>
-                                <button type="submit" class="btn btn-danger mr-1">Delete</button>
-                            </form>
+                        <td>
                             @if($post->status == 'pending')
-                                <form action="{{ route('home.approve', ['id' =>  $post->id]) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('POST')
+                            <form action="{{ route('home.approve', ['id' =>  $post->id]) }}" method="POST">
+                                @csrf
+                                <input onclick="this.value='Rejected'" type="button" value="Reject" id="myButton1" class="btn btn-info" />
                                     <button type="submit" class="btn btn-success">Approve</button>
-                                </td>
+                                    @method('POST')
+                                
                             </form>
                             @endif
+                            <form action="{{ route('home.destroy',$post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger mt-2">Delete</button>
+                            </td>
+                            </form>
                             @endif
                         </tr>
                             @endforeach
-        </tbody>
-    </table>
+                        </table>
+        
+    
 
     @if(auth()->user()->hasRole('user'))
 
@@ -86,7 +92,9 @@
                 </div>
             </div>
         </form>
+    
     @endif
     {{ $posts->links('pagination::bootstrap-4') }}
+</div>
 </div>
 @endsection
