@@ -18,32 +18,27 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $posts = Post::orderByDesc('blog')->paginate(10);
+        $posts = Post::orderByDesc('created_at')->paginate(10);
     
-        return view('home',compact('posts'));
+        return view('home')->with(compact('posts'));
     }
 
-    public function create()
-    {
-      
-    }
- 
     public function store(Request $request)
     {
         Post::create($request->all());
         return redirect('home');
     }
 
-    public function edit(Request $request, Post $post)
+    public function edit(Request $request, $id)
     {
-        return redirect('home.edit');
+        
+        $post = Post::find($id);
+        $post->status = $request->post('action');
+        $post->save();     
+
+        return redirect('home');
     }
 
     public function destroy(Post $post,$id)
@@ -54,14 +49,7 @@ class HomeController extends Controller
         return redirect('home');
     }
 
-    public function approve($id) {
-        $post = Post::find($id);
-        if($post->status == 'pending') {
-            $post->status = 'Approved';
-            $post->save();
-        }
-        return redirect('home');
-    }
+  
 
 
 }

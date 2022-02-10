@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::resource('students', StudentController::class);
+Route::resource('students', StudentController::class);
 
 // Route::resource('companies', CompaniesController::class);
 
@@ -34,7 +34,6 @@ Route::get('/', function () {
 });
 
 Route::resource('/home', HomeController::class);
-Route::post('/home/approve/{id}', [
-    'as' => 'home.approve',
-    'uses' => 'HomeController@approve'
-]);
+
+
+

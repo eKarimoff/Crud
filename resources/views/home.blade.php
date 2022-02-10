@@ -28,7 +28,6 @@
 
 <div class="container " style="margin-top:30px; ">
     <div class="table-responsive">
-
     
     <table class="table table-bordered" >
         
@@ -41,7 +40,7 @@
         @if(auth()->user()->hasRole('admin'))
         <th>Action</th>
         @endif
-        </tr>
+        </tr> 
                 @foreach($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
@@ -49,33 +48,30 @@
                     <td>{{ $post->created_at }}</td>
                     <td>{{ $post->updated_at }}</td>
                     <td>{{ $post->status }}</td>
+                  
                     @if(auth()->user()->hasRole('admin'))
-                   
-                        <td>
-                            @if($post->status == 'pending')
-                            <form action="{{ route('home.approve', ['id' =>  $post->id]) }}" method="POST">
-                                @csrf
-                                <input onclick="this.value='Rejected'" type="button" value="Reject" id="myButton1" class="btn btn-info" />
-                                    <button type="submit" class="btn btn-success">Approve</button>
-                                    @method('POST')
-                                
-                            </form>
-                            @endif
-                            <form action="{{ route('home.destroy',$post->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger mt-2">Delete</button>
-                            </td>
-                            </form>
-                            @endif
-                        </tr>
-                            @endforeach
-                        </table>
+                    <td>
+                            <form class="form-horizontal" role="form" action="{{route('home.edit', $post->id)}}">
+                                @if($post->status == 'Approved' || $post->status == 'Rejected' || $post->status == 'Deleted')
+                                <input name="action" value="Pending" type="hidden">
+                                <button type="submit" class="btn btn-success mt-2">Refresh</button>
+                                @elseif($post->status == 'Pending')
+                                <input name="action" value="Rejected" type="submit" class="btn btn-primary mt-2">
+                                <input name="action" value="Approved" type="submit" class="btn btn-info mt-2">
+                                <input name="action" value="Deleted" type="submit"class="btn btn-danger mt-2">
+                             </form>
+                             @endif 
+                    </td>
+                    @endif
+                    
+                    @endforeach
+                </tr>
+                
+                </table>
         
     
 
     @if(auth()->user()->hasRole('user'))
-
         <h5>Start blogging</h5>
         <form action="{{ route('home.store') }}" method="POST">
             @csrf
@@ -85,10 +81,7 @@
                 <label for="floatingTextarea2">Comments</label>
             </div>
             <div class="form-group">
-                <label class="col-md-4 control-label"></label>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-primary">Send</button>
-
+                    <button type="submit" class="btn btn-primary mt-3">Send</button>
                 </div>
             </div>
         </form>
