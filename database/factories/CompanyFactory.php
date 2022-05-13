@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Company;
 
 class CompanyFactory extends Factory
 {
@@ -11,6 +11,8 @@ class CompanyFactory extends Factory
      *
      * @return array
      */
+
+    protected $model = Company::class;
     public function definition()
     {
         return [

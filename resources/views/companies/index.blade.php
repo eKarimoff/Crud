@@ -7,7 +7,10 @@
         <a href="{{route('companies.create')}}">
     <button class="btn btn-success" type="button">Create</button></a>
 </div>
-    <table class="table table-bordered">
+<div class="container">
+
+
+    <table class="table table-bordered" >
         <thead>
             <tr>
                 <th>No.</th>
@@ -35,7 +38,12 @@
                 </form>
                 @endforeach
             </tr>
+            
         </tbody>
     </table>
-     {{$companies-links('pagination::bootstrap-4')}}
+</div>
+    <div class="d-flex" style="justify-content:center">
+
+        {{$companies->links()}}
+    </div>
 @endsection

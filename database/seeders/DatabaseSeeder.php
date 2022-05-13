@@ -2,9 +2,7 @@
 
 use Database\Seeders\CompanySeeder;
 use Illuminate\Database\Seeder;
-use App\Models\Post;
-
-
+use App\Models\Company;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      \App\Models\Post::factory(10)->create();
-       
+        $this->call([
+          CompanySeeder::class,
+        ]);
     }
 }

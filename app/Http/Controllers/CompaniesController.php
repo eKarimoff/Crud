@@ -18,7 +18,7 @@ class CompaniesController extends Controller
      */
     public function index()
     {  
-        $companies = Company::orderByDesc('created_at')->paginate(20);
+        $companies = Company::orderByDesc('created_at')->paginate(10);
         
        return view('companies.index',['companies'=>$companies
        ]);
@@ -47,11 +47,6 @@ class CompaniesController extends Controller
     public function store(SaveCompanyRequest $request)
     {
         
-        // $company = new Company;
-        // $company->name = $data['name'];
-        // $company->phone = $data['phone'];
-        // $company->address = $data['address'];
-        // $company->save();
         Company::create($request->validated());
 
         return redirect()->route('companies.index');
@@ -66,7 +61,7 @@ class CompaniesController extends Controller
      */
     public function show(Company $company)
     {
-        //$company=Company::findORFail($companies);
+        //$company=Company::findOrFail($companies);
         return view('companies.show',[
             'company'=>$company
         ]);

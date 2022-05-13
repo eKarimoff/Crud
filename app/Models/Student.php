@@ -1,13 +1,11 @@
 <?php
 
-namespace App;
-//use Illuminate\datebase\Eloquent\Factories\HasFactory;
+namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {    
-    // use HasFactory;
-    protected $fillable = [
-        'studname', 'course', 'fee',
-    ];
+    use HasFactory;
+    protected $fillable = ['studname', 'course','fee'];
 }
