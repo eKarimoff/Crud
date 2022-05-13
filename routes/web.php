@@ -18,18 +18,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
+
+Route::get('/', function () {
+ 
+    return view('auth.login');
+});
+
+Route::get('/home', function () {
+    return view('auth.login');
+});
+
 Route::resource('students', StudentController::class);
 
 Route::resource('companies', CompaniesController::class);
 
-Route::get('/', function () {
- 
-    return view('welcome');
-});
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
