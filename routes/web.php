@@ -26,13 +26,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/home', function () {
-    return view('auth.login');
+Route::group(['middleware'=>'auth'], function(){
+
+    Route::resource('students', StudentController::class);
+    
+    Route::resource('companies', CompaniesController::class);
 });
 
-Route::resource('students', StudentController::class);
-
-Route::resource('companies', CompaniesController::class);
 
 
 

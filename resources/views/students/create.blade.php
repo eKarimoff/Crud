@@ -1,4 +1,4 @@
-@extends('students.layout')
+@extends('layouts.app')
 @section('content')
 
 <div class="row">
@@ -6,9 +6,7 @@
         <div class="float-right">
             <h2>Add New Students</h2>
         </div>
-        <div class="float-right">
-            <a class="btn btn-primary" href="{{ route('students.index') }}">Back</a>
-        </div>
+        
 
         @if($errors->any())
             <div class="alert alert-danger">
@@ -50,6 +48,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center pt-4">
                     <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-danger" href="{{ route('students.index') }}">Back</a>
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-@extends('students.layout')
+@extends('layouts.app')
 @section('content')
 
 <h1 style="text-align: center;">Students details</h1>
@@ -20,7 +20,9 @@
 </tr>
 
 </table>
-<a style="float: right;" class="btn btn-danger"  href="{{route('students.index')}}">Back</a>
+<div class="d-flex" style="justify-content:center">
+    <a style="float: right;" class="btn btn-danger"  href="{{route('students.index')}}">Back</a>
+</div>
 </div>
 </div>
 </div>

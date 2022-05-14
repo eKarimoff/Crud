@@ -1,4 +1,4 @@
-@extends('students.layout')
+@extends('layouts.app')
 @section('content')
 
 <div class="float-left">
@@ -7,19 +7,12 @@
 
 <a style="margin: 3px;" class="btn btn-success add-new" href="{{ route('students.create') }}"><i
         class="fas fa-plus"></i></a>
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-
-    </div>
-</div>
 @if($message=Session::get('success'))
     <div class="alert alert-success">
-
         <p>{{ $message }}</p>
 
     </div>
 @endif
-
 
 <table class="table table-bordered table-hover">
     <tr>
@@ -27,7 +20,7 @@
         <th>Name</th>
         <th>Course</th>
         <th>Fee</th>
-        <th style="width:280px">Action</th>
+        <th style="width:280px">Details | Edit | Delete</th>
     </tr>
     @foreach($students as $student)
         <tr>

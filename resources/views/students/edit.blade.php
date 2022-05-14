@@ -1,4 +1,4 @@
-@extends('students.layout')
+@extends('layouts.app')
 
 @section('content')
 
@@ -9,7 +9,6 @@
 </div>
 
 <div class="float-right">
-<a class="btn btn-primary" href="{{route('students.index')}}">Back</a>
 
 </div>
 </div>
@@ -54,7 +53,9 @@
 </div>
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary mt-3">Submit</button>
+<a class="btn btn-danger mt-3" href="{{route('students.index')}}">Back</a>
+
 </div>
 </div>
 </form>

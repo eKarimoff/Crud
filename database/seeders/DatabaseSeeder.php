@@ -1,9 +1,10 @@
 <?php
 
 use Database\Seeders\CompanySeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 use App\Models\Company;
-
+use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,7 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-          CompanySeeder::class,
+          // CompanySeeder::class,
+          UserSeeder::class,
         ]);
     }
 }
