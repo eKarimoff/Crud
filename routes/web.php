@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>'auth'], function(){
 
-    Route::resource('companies', CompaniesController::class);
+    Route::resource('/companies', CompaniesController::class);
 });
 
 
